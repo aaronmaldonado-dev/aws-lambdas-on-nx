@@ -19,6 +19,33 @@
           "buildTarget": "lambdas:build:production"
         }
       }
+    },
+    "build-lambdas-nx": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "webpackConfig": "apps/lambdas/webpack.config.lambdas-nx.js",
+        "tsConfig": "apps/lambdas/tsconfig.lambdas.json"
+      }
+    },
+    "build-lambdas": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "webpack --config apps/lambdas/webpack.config.lambdas.js --mode=production"
+          }
+        ]
+      }
+    },
+    "build-lambda01": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "webpackConfig": "apps/lambdas/webpack.config.lambdas.js",
+        "tsConfig": "apps/lambdas/tsconfig.lambdas.json",
+        "main": "apps/lambdas/src/lambda01.ts",
+        "outputPath": "apps/lambdas/dist/lambda01",
+        "babelUpwardRootMode": true
+      }
     }
   }
 }
