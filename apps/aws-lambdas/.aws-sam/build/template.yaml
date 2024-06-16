@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'aws-lambdas
+
+  Lambdas inside NX
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  HelloWorldFunction01:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: HelloWorldFunction01
+      Handler: app.myLambda01Handler
+      Runtime: nodejs20.x
+      Architectures:
+      - x86_64
+      Events:
+        HelloWorld01:
+          Type: Api
+          Properties:
+            Path: /hello-world-01
+            Method: get
+    Metadata:
+      SamResourceId: HelloWorldFunction01
+  HelloWorldFunction02:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: HelloWorldFunction02
+      Handler: app.myLambda02Handler
+      Runtime: nodejs20.x
+      Architectures:
+      - x86_64
+      Events:
+        HelloWorld02:
+          Type: Api
+          Properties:
+            Path: /hello-world-02
+            Method: get
+    Metadata:
+      SamResourceId: HelloWorldFunction02
+Outputs:
+  HelloWorld01Api:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+      01
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello-world-01/
+  HelloWorld01Function:
+    Description: Hello World Lambda Function 01 ARN
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunction01
+      - Arn
+  HelloWorld01FunctionIamRole:
+    Description: Implicit IAM Role created for Hello World function 01
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunction01Role
+      - Arn
+  HelloWorld02Api:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+      02
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello-world-02/
+  HelloWorld02Function:
+    Description: Hello World Lambda Function 02 ARN
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunction02
+      - Arn
+  HelloWorld02FunctionIamRole:
+    Description: Implicit IAM Role created for Hello World function 02
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunction02Role
+      - Arn

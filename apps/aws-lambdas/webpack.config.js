@@ -3,7 +3,7 @@ const { join } = require('path');
 
 module.exports = {
   output: {
-    path: join(__dirname, '../../dist/apps/aws-lambdas'),
+    path: join(__dirname, './dist/'),
   },
   plugins: [
     new NxAppWebpackPlugin({
@@ -14,6 +14,8 @@ module.exports = {
       assets: ['./src/assets'],
       optimization: false,
       outputHashing: 'none',
+      externalDependencies: 'none',
+      module: 'commonjs',
     }),
   ],
 };
