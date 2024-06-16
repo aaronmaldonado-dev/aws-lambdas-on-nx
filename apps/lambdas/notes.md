@@ -1,2 +1,0 @@
-- TODO: should we stick with CommonJs or switch to ES6 modules?
-- I could not being able compile separate lambda files, I'll take the one file approach for now
