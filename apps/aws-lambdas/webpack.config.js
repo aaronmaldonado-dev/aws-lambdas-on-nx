@@ -3,19 +3,20 @@ const { join } = require('path');
 
 module.exports = {
   output: {
-    path: join(__dirname, './dist/'),
+    path: join(__dirname, './.aws-sam/build/HelloWorldFunction01'),
+    libraryTarget: 'commonjs2',
   },
+  target: 'node',
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',
       compiler: 'tsc',
-      main: './src/main.ts',
+      main: './src/HelloWorldFunction01.ts',
       tsConfig: './tsconfig.app.json',
-      assets: ['./src/assets'],
       optimization: false,
       outputHashing: 'none',
       externalDependencies: 'none',
-      module: 'commonjs',
+      // module: 'commonjs',
     }),
   ],
 };

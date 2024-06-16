@@ -19,6 +19,15 @@
           "buildTarget": "aws-lambdas:build:production"
         }
       }
+    },
+    "build-HelloWorldFunction01": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "outputPath": "apps/aws-lambdas/.aws-sam/build/HelloWorldFunction01",
+        "main": "apps/aws-lambdas/src/HelloWorldFunction01/index.ts",
+        "tsConfig": "apps/aws-lambdas/tsconfig.app.json",
+        "webpackConfig": "apps/aws-lambdas/webpack.config.js"
+      }
     }
   }
 }
